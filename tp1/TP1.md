@@ -94,6 +94,8 @@ Modifiez le programme pour qu'il affiche votre prénom à la place.
 5. Lancez le programme et passez-lui un très long nom (au moins 20 caractères). Que se passe-t-il ?  
 Quelle classe de la librairie standard faudrait-il utiliser à la place du tableau de `char` pour stocker le nom de l'utilisateur ?
 
+- Il faut utiliser un string contenu dans l'en-tête \<string>
+
 6. Modifiez le programme afin de réaliser ce changement. Testez et commitez vos modifications.
 
 7. Prenez note des difficultés que vous avez rencontrées durant cet exercice et de comment vous les avez surmontées.
