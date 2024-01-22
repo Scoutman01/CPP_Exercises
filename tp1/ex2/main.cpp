@@ -15,6 +15,7 @@ int main() {
         std::cin >> prenom;
         std::cout << "Nom: ";
         std::cin >> nom;
+        //std::cin >> prenom >> nom;
         //Person p (prenom, nom);
         //vec.push_back(p);
         vec.emplace_back(prenom, nom);
@@ -22,11 +23,7 @@ int main() {
     std::cout << "Les personnes sont ";
     for (int i = 0; i < persons; i++) {
         builder << vec[i].get_first_name() << " " << vec[i].get_surname();
-        if (i == persons - 1) {
-            builder << ".";
-        } else {
-            builder << ", ";
-        }
+        i == persons -1 ? builder << "." : builder << ", ";
     }
     std::cout << builder.str() << std::endl;
     return 0;
