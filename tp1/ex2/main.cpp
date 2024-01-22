@@ -3,6 +3,16 @@
 #include <vector>
 #include <sstream>
 
+/*int main() {
+    //Person p;
+    //p.first_name = "Palluche";
+    //p.surname = "La Faluche";
+    //std::cout << "La personne s'appelle " << p.first_name << " " << p.surname << std::endl;
+    Person p ("Palluche", "La Faluche");
+    std::cout << "La personne s'appelle " << p.get_first_name() << " " << p.get_surname() << std::endl;
+    return 0;
+}*/
+
 int main() {
     int persons;
     std::stringstream builder;

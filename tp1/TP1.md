@@ -158,16 +158,42 @@ Pensez à prendre des notes pour les donner à vos camarades absents.
 2. Expliquez la différence entre phase de build (compilation) et phase de link (édition des liens).  
 En quoi consiste la précompilation et à quel moment est-elle effectuée ?
 
+```
+La compilation vérifie que la sémantique du programme est bonne et transforme un fichier source en un fichier objet. L'édition des liens regroupe tous les fichiers objet afin de fournir les implémentations des fonctions appeler dans les différents fichiers.
+
+La précompilation consiste à lire les instructions commencant par un #, et les remplace.
+```
+
 3. Que signifient les messages suivants ?  
 a. error: 'qqchose' was not declared in this scope  
 b. error: 'qqchose' is not a member of 'std'  
 Ces erreurs se produisent-elles pendant la phase de build ou de link ?  
 Que fait exactement l'instruction préprocesseur `#include` et pourquoi permet-elle généralement de résoudre ce type de problème ?
 
+```
+a. Utilisation d'un symbole qui n'a pas été déclarer.
+b. Utilisation de l'opérateur :: sur un symbole qui ne fait pas partie de l'espace de nom.
+
+Ces erreurs se produisent pendant la phase de build, lorsque le compilateur fait la table des symboles.
+
+L'instruction préprocesseur #include copie le contenu d'un fichier.
+
+Elle permet généralement de résoudre ce type de problème si le programme utilise un symbole déclarer dans un fichier d'en-tête.
+```
+
 4. Compilez le programme de l'exercice en ne linkant que le fichier-objet associé à `main.cpp` (c'est-à-dire en oubliant `utils.cpp`).  
 Quelle est l'erreur qui s'affiche ?    
 En quoi est-elle différente des erreurs de la question précédente ?  
 Expliquez ce qu'elle signifie exactement.
+
+```
+référence indéfinie vers « print_hello() »
+
+Cette erreur est différente car elle se produit pendant l'édition des liens.
+
+La fonction print_hello à bien été déclarer pendant la compilation, mais aucune
+implémentation n'a été trouvé.
+```
 
 5. Décommentez maintenant les instructions commentées des fichiers [main.cpp](ex3/main.cpp) et [utils.hpp](ex3/utils.hpp).  
 Compilez maintenant le programme complet (avec les modules main et utils).  
@@ -175,8 +201,22 @@ Quelle est l'erreur qui s'affiche ? S'agit-il d'une erreur de build ou de link ?
 Pourquoi se produit-elle ?  
 Que faudrait-il faire pour la résoudre ?
 
+```
+/usr/bin/ld : /tmp/ccgIIcFE.o : dans la fonction « print_bye() » :
+utils.cpp:(.text+0x0) : définitions multiples de « print_bye() »; /tmp/ccp3snlE.o:main.cpp:(.text+0x0) : défini pour la première fois ici
+collect2: error: ld returned 1 exit status
+
+Il s'agit d'une erreur de link. La fonction print_bye est implémenté dans le fichier utils.hpp, lorsque ce fichier sera inclus la fonction sera incluse qu'une seule fois grâce a #pragma once, mais il y aura deux définitions de la fonction prin_bye.
+
+Pour résoudre le problème on peut remplacer l'implémentation par une définition dans le fichier hpp, le fichier cpp contiendra l'implémentation.
+```
+
 6. Ajoutez le mot-clef `inline` devant la définition de la fonction `print_bye` dans [utils.hpp](ex3/utils.hpp). Que constatez-vous quand vous réessayez de compiler le programme ?  
 Selon-vous, quel est l'effet du mot-clef `inline` sur le linker ?
+
+```
+Le linker fera comme si la fonction n'était présente que dans un seul fichier.
+```
 
 ## Pour terminer
 
