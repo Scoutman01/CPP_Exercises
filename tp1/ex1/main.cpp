@@ -1,8 +1,7 @@
 #include <iomanip>
 #include <iostream>
 
-int main()
-{
+int main() {
     std::cout << "Entre ton nom: "; // affichage sur la sortie standard
 
     char name[20] = ""; // création d'un tableau de caractères de taille 20

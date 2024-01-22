@@ -1,8 +1,7 @@
 #include <string>
 #include <iostream>
 
-int main()
-{
+int main() {
     std::cout << "Entre ton nom: ";
 
     std::string name;
